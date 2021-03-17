@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">HoffTest</string>
+    <string name="tv_home">Главная</string>
+    <string name="go_to_catalog">Перейти в каталог</string>
+    <string name="first_inexpensive">Сначала дешевые</string>
+    <string name="first_expensive">Сначала дорогие</string>
+    <string name="popular">Популярные</string>
+    <string name="on_discounts">По скидкам</string>
+    <string name="filter">Фильтры(12)</string>
+
+    <string-array name="sortItems">
+        <item>Сначала дешевые</item>
+        <item>Сначала дорогие</item>
+        <item>Популярные</item>
+        <item>По скидкам</item>
+    </string-array>
+</resources>
