@@ -1,6 +1,8 @@
-package com.example.hofftest.data;
+package com.example.hofftest.data.global;
 
 import com.example.hofftest.App;
+import com.example.hofftest.data.networks.RequestListener;
+import com.example.hofftest.data.models.ProductsResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -13,7 +13,7 @@ import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hofftest.R;
-import com.example.hofftest.data.Products;
+import com.example.hofftest.data.models.Products;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

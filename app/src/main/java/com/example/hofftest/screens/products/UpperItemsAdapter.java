@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hofftest.R;
-import com.example.hofftest.data.RelatedCategory;
+import com.example.hofftest.data.models.RelatedCategory;
 
 import java.util.ArrayList;
 import java.util.List;

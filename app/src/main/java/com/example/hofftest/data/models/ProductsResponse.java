@@ -1,5 +1,7 @@
-package com.example.hofftest.data;
+package com.example.hofftest.data.models;
 
+import com.example.hofftest.data.models.Products;
+import com.example.hofftest.data.models.RelatedCategory;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

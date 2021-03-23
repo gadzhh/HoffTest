@@ -1,4 +1,6 @@
-package com.example.hofftest.data;
+package com.example.hofftest.data.networks;
+
+import com.example.hofftest.data.models.ProductsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

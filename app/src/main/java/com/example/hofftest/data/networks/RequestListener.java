@@ -1,6 +1,6 @@
-package com.example.hofftest.data;
+package com.example.hofftest.data.networks;
 
-import java.util.ArrayList;
+import com.example.hofftest.data.models.ProductsResponse;
 
 public interface RequestListener {
 

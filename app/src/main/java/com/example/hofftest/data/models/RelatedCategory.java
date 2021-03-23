@@ -1,4 +1,4 @@
-package com.example.hofftest.data;
+package com.example.hofftest.data.models;
 
 import com.google.gson.annotations.SerializedName;
 

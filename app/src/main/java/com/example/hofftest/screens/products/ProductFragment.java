@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hofftest.R;
-import com.example.hofftest.data.ProductsResponse;
+import com.example.hofftest.data.models.ProductsResponse;
 import com.example.hofftest.data.SharedPreferenceHelper;
 import com.example.hofftest.screens.home.HomeFragment;
 

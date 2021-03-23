@@ -2,8 +2,8 @@ package com.example.hofftest;
 
 import android.app.Application;
 
-import com.example.hofftest.data.DataManager;
-import com.example.hofftest.data.ProductApi;
+import com.example.hofftest.data.global.DataManager;
+import com.example.hofftest.data.networks.ProductApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

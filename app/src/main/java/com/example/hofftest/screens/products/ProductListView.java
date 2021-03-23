@@ -1,6 +1,6 @@
 package com.example.hofftest.screens.products;
 
-import com.example.hofftest.data.ProductsResponse;
+import com.example.hofftest.data.models.ProductsResponse;
 
 public interface ProductListView {
 
