@@ -20,10 +20,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hofftest.R;
-import com.example.hofftest.data.models.ProductsResponse;
 import com.example.hofftest.data.SharedPreferenceHelper;
+import com.example.hofftest.data.models.Products;
+import com.example.hofftest.data.models.ProductsResponse;
 import com.example.hofftest.screens.home.HomeFragment;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -36,6 +38,7 @@ public class ProductFragment extends Fragment implements ProductListView, OnButt
     private ProductListPresenter presenter;
     private FrameLayout progress;
     private AppCompatSpinner spinnerBtn;
+    private GridLayoutManager layoutManager;
 
     @Nullable
     @Override
@@ -58,6 +61,8 @@ public class ProductFragment extends Fragment implements ProductListView, OnButt
         RecyclerView mainProductList, upperProductList;
         Toolbar toolbar;
 
+        layoutManager = new GridLayoutManager(getContext(), 2);
+
         progress = view.findViewById(R.id.progress);
         spinnerBtn = view.findViewById(R.id.spinner);
         toolbar = view.findViewById(R.id.toolbar);
@@ -66,15 +71,17 @@ public class ProductFragment extends Fragment implements ProductListView, OnButt
             HomeFragment homeFragment = new HomeFragment();
 
             FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_for_fragments, homeFragment).addToBackStack(null);
+            FragmentTransaction fragmentTransaction = fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.container_for_fragments, homeFragment)
+                    .addToBackStack(null);
             fragmentTransaction.commit();
         });
 
         mainProductList = view.findViewById(R.id.rv_main);
         upperProductList = view.findViewById(R.id.rv_upper);
 
-        mainProductList.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        mainProductList.setLayoutManager(layoutManager);
         productItemsAdapter = new ProductItemsAdapter(this);
         mainProductList.setHasFixedSize(true);
         mainProductList.setAdapter(productItemsAdapter);
@@ -83,6 +90,24 @@ public class ProductFragment extends Fragment implements ProductListView, OnButt
         upperProductList.setHasFixedSize(true);
         upperProductList.setAdapter(upperItemsAdapter);
 
+        mainProductList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                int totalItemCount = productItemsAdapter.getItemCount();
+                int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+
+                if (totalItemCount - lastVisibleItemPosition < 10) {
+                    presenter.fetchNextPage();
+                }
+            }
+        });
     }
 
     private void initPresenter() {
@@ -122,6 +147,11 @@ public class ProductFragment extends Fragment implements ProductListView, OnButt
     }
 
     @Override
+    public void applyNewProducts(ArrayList<Products> products) {
+        productItemsAdapter.setData(products);
+    }
+
+    @Override
     public void onFavoriteClicked(int productId, boolean isDelete) {
         if (isDelete) {
             preferenceHelper.removeFromFavorite(productId);
@@ -141,24 +171,25 @@ public class ProductFragment extends Fragment implements ProductListView, OnButt
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
         String[] itemPosition = getResources().getStringArray(R.array.sortItems);
         String item = itemPosition[i];
 
-
         switch (item) {
             case "Сначала дешевые":
-                presenter.fetchProducts(320, "popular", "desc", "N", 0);
+                presenter.fetchProducts(320, "popular", "desc", "N");
+                break;
             case "Сначала дорогие":
-                presenter.fetchProducts(320, "popular", "asc", "N", 0);
             case "Популярные":
-                presenter.fetchProducts(320, "popular", "asc", "N", 0);
+                presenter.fetchProducts(320, "popular", "asc", "N");
+                break;
             case "По скидкам":
-                presenter.fetchProducts(320, "popular", "desc", "Y", 0);
+                presenter.fetchProducts(320, "popular", "desc", "Y");
+                break;
         }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }

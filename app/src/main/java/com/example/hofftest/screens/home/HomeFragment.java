@@ -41,8 +41,10 @@ public class HomeFragment extends Fragment {
             ProductFragment productFragment = new ProductFragment();
 
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_for_fragments, productFragment).addToBackStack(null);
+            FragmentTransaction fragmentTransaction = fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.container_for_fragments, productFragment)
+                    .addToBackStack(null);
             fragmentTransaction.commit();
         });
     }

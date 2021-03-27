@@ -13,7 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class App extends Application {
 
     private static final String BASE_URL = "https://hoff.ru/api/v2/";
-    private static Retrofit retrofit;
     private static ProductApi api;
     private static DataManager dataManager;
 
@@ -28,6 +27,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Retrofit retrofit;
 
 
         Gson gson = new GsonBuilder()
